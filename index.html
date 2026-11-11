@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexo — La IA que vive en tu PC | Descarga gratis para Windows</title>
+<meta name="description" content="Nexo es una IA que funciona en tu propio ordenador: programa, crea webs y juegos, edita vídeos y habla contigo. Privada, sin internet y gratis. Descárgala para Windows.">
+<meta name="keywords" content="Nexo, IA local, inteligencia artificial gratis, IA en mi PC, IA sin internet, asistente IA Windows, programar con IA">
+<meta property="og:title" content="Nexo — La IA que vive en tu PC">
+<meta property="og:description" content="Programa, crea, edita vídeos y habla contigo. Privada y sin internet. Gratis para Windows.">
+<meta property="og:image" content="nexo.png">
+<link rel="icon" href="nexo.png">
+<style>
+  :root { --bg:#0b0d12; --s1:#12151c; --s2:#191d27; --line:#232836; --ink:#eef0f5; --mut:#8b92a5; --a:#4fd1ff; --b:#a66bff; --r:16px; }
+  * { box-sizing:border-box; margin:0 }
+  html { scroll-behavior:smooth }
+  body { background:var(--bg); color:var(--ink); font:17px/1.6 "Segoe UI",system-ui,sans-serif; -webkit-font-smoothing:antialiased }
+  ::selection { background:var(--a); color:#000 }
+  a { color:inherit; text-decoration:none }
+  .w { width:min(1140px,100% - 40px); margin-inline:auto }
+  header { position:sticky; top:0; z-index:9; background:#0b0d12cc; backdrop-filter:blur(12px); border-bottom:1px solid var(--line) }
+  .nav { height:66px; display:flex; align-items:center; gap:30px }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; margin-right:auto }
+  .brand img { width:32px; border-radius:8px }
+  .nav a.l { color:var(--mut); font-size:15px } .nav a.l:hover { color:var(--ink) }
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:13px 22px; border-radius:12px; font-weight:700; transition:transform .2s ease-out, box-shadow .2s }
+  .btn:hover { transform:translateY(-2px) }
+  .dl { background:linear-gradient(135deg,var(--a),var(--b)); color:#0b0d12; box-shadow:0 10px 40px -12px #4fd1ff88 }
+  .sm { padding:9px 16px; font-size:14px }
+  .ghost { border:1px solid var(--line) }
+  .hero { padding:96px 0 60px; display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center }
+  .tag { display:inline-block; font-size:13px; font-weight:700; color:var(--a); border:1px solid #4fd1ff44; border-radius:99px; padding:5px 12px; margin-bottom:22px }
+  h1 { font-size:clamp(2.8rem,6.4vw,5.4rem); line-height:.98; letter-spacing:-.045em; font-weight:900 }
+  h1 span { background:linear-gradient(135deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent }
+  .hero p { color:var(--mut); font-size:19px; max-width:48ch; margin:24px 0 32px }
+  .meta { color:var(--mut); font-size:13.5px; margin-top:14px }
+  /* Mini ventana de la app */
+  .app { background:var(--s1); border:1px solid var(--line); border-radius:20px; overflow:hidden; box-shadow:0 40px 80px -30px #000 }
+  .bar { display:flex; gap:7px; padding:12px 14px; border-bottom:1px solid var(--line) } .bar i { width:11px; height:11px; border-radius:50%; background:#2a3040 }
+  .chat { padding:20px; display:grid; gap:14px; font-size:14.5px }
+  .u { justify-self:end; background:var(--s2); padding:9px 14px; border-radius:14px 14px 4px 14px; max-width:80% }
+  .n { display:flex; gap:10px } .n img { width:24px; height:24px } .n div { color:#cfd3dd }
+  .tool { border:1px solid var(--line); border-radius:10px; padding:7px 12px; font:12.5px Consolas,monospace; color:var(--mut); display:flex; justify-content:space-between }
+  .tool b { color:#4ade80; font-weight:400 }
+  section { padding:90px 0 }
+  h2 { font-size:clamp(2rem,4.4vw,3.2rem); line-height:1.02; letter-spacing:-.035em; font-weight:900; margin-bottom:14px }
+  .sub { color:var(--mut); max-width:56ch; margin-bottom:44px }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+  .card { background:var(--s1); border:1px solid var(--line); border-radius:var(--r); padding:26px }
+  .card.big { grid-column:span 2 }
+  .card h3 { font-size:19px; margin:14px 0 6px } .card p { color:var(--mut); font-size:15px }
+  .ic { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background:var(--s2); color:var(--a) }
+  .ic svg { width:22px; height:22px }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; counter-reset:s }
+  .step { border-top:2px solid var(--line); padding-top:22px }
+  .step::before { counter-increment:s; content:"0" counter(s); font-weight:900; font-size:15px; color:var(--a) }
+  .step h3 { margin:8px 0 6px } .step p { color:var(--mut); font-size:15px }
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+  .plan { background:var(--s1); border:1px solid var(--line); border-radius:var(--r); padding:28px }
+  .plan.top { border-color:#a66bff88; box-shadow:0 0 0 1px #a66bff55 }
+  .plan h3 { font-size:16px; color:var(--mut); text-transform:uppercase; letter-spacing:.1em }
+  .price { font-size:44px; font-weight:900; letter-spacing:-.03em; margin:6px 0 }
+  .plan ul { padding-left:18px; color:#c9cdd8; font-size:15px; display:grid; gap:6px; margin-top:14px }
+  .req { display:grid; grid-template-columns:1fr 1fr; gap:16px }
+  details { background:var(--s1); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin-bottom:10px }
+  summary { cursor:pointer; font-weight:700 } details p { color:var(--mut); margin-top:10px; font-size:15px }
+  .final { text-align:center; background:radial-gradient(ellipse at top,#4fd1ff1a,transparent 60%); border:1px solid var(--line); border-radius:28px; padding:70px 24px }
+  footer { border-top:1px solid var(--line); padding:34px 0 50px; color:var(--mut); font-size:14px }
+  footer .w { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px }
+  @media (max-width:900px) { .hero,.req { grid-template-columns:1fr } .grid,.steps,.plans { grid-template-columns:1fr } .card.big { grid-column:auto } .nav a.l { display:none } }
+</style>
+</head>
+<body>
+<header><div class="w nav">
+  <a class="brand" href="#"><img src="nexo.png" alt="">Nexo</a>
+  <a class="l" href="#funciones">Funciones</a><a class="l" href="#planes">Planes</a><a class="l" href="#preguntas">Preguntas</a>
+  <a class="btn dl sm" href="NexoSetup.exe" download>Descargar</a>
+</div></header>
+
+<main>
+  <div class="w hero">
+    <div>
+      <span class="tag">Para Windows · Gratis</span>
+      <h1>La IA que vive<br>en <span>tu PC</span>.</h1>
+      <p>Nexo programa, crea webs y juegos, edita tus vídeos y habla contigo. Funciona en tu ordenador: lo que le cuentas no sale de tu casa.</p>
+      <a class="btn dl" href="NexoSetup.exe" download>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zm0 13 7.5 1v-7H3zm8.5 1.1L21 21v-8.5h-9.5zm0-15.2V11.5H21V3z"/></svg>
+        Descargar para Windows</a>
+      <div class="meta">NexoSetup.exe · Windows 10 y 11 · después elige pack Básico (10 GB) o Completo (50 GB)</div>
+    </div>
+    <div class="app" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="chat">
+        <div class="u">Hazme un juego de naves y conviértelo en un .exe</div>
+        <div class="n"><img src="nexo.png" alt=""><div>Vale, lo monto y lo pruebo.</div></div>
+        <div class="tool">✏️ naves/index.html <b>✓</b></div>
+        <div class="tool">🧪 Probar en el navegador · sin errores <b>✓</b></div>
+        <div class="tool">📦 naves → Naves.exe <b>✓</b></div>
+        <div class="n"><img src="nexo.png" alt=""><div>Listo. Tienes <b>Naves.exe</b> en tu carpeta: doble clic y a jugar.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="funciones"><div class="w">
+    <h2>No solo responde.<br>Hace las cosas.</h2>
+    <p class="sub">Nexo tiene herramientas de verdad: crea carpetas y archivos, ejecuta programas, monta vídeos y comprueba su propio trabajo. Te pide permiso antes de tocar nada delicado.</p>
+    <div class="grid">
+      <div class="card big"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></div>
+        <h3>Programa de todo</h3><p>Webs, juegos 2D, bots de Discord, scripts de Python, Roblox… y los convierte en .exe. El modo <b>Ultra Code</b> se revisa a sí mismo, lo prueba y corrige antes de entregártelo.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3"/></svg></div>
+        <h3>Edita tus vídeos</h3><p>Recorta, une, pasa a vertical para TikTok y pone subtítulos automáticos con tu voz.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Privada de verdad</h3><p>Funciona sin internet. Tus chats y archivos se quedan en tu disco, no en un servidor.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0-6 6c0 2.5 1.5 4 2.5 5S10 16 10 18h4c0-2 .5-3 1.5-4s2.5-2.5 2.5-5a6 6 0 0 0-6-6zM10 21h4"/></svg></div>
+        <h3>Te recuerda</h3><p>Aprende lo que le cuentas de ti y lo usa en los siguientes chats.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg></div>
+        <h3>Modo juego</h3><p>Si abres un juego, Nexo se pausa solo y te deja la gráfica entera. Nunca usa más del 75 % del PC.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="w">
+    <h2>Instalada en tres pasos</h2>
+    <p class="sub">Como cualquier otra app.</p>
+    <div class="steps">
+      <div class="step"><h3>Descarga</h3><p>Pulsa “Descargar para Windows” y abre <b>NexoSetup.exe</b>.</p></div>
+      <div class="step"><h3>Instala</h3><p>Elige pack Básico o Completo y dale a Instalar. Se descarga solo lo que hace falta.</p></div>
+      <div class="step"><h3>Ábrela</h3><p>Doble clic en el icono de Nexo del escritorio. Ya está.</p></div>
+    </div>
+  </div></section>
+
+  <section id="planes"><div class="w">
+    <h2>Planes</h2>
+    <p class="sub">Empiezas gratis. Los planes de pago se activan con un código de licencia.</p>
+    <div class="plans">
+      <div class="plan"><h3>Gratis</h3><div class="price">0 €</div><ul><li>30.000 tokens al día</li><li>Nexo Auto, Chat y Code Rápido</li><li>Modo agente, skills y memoria</li></ul></div>
+      <div class="plan"><h3>Avanzado</h3><div class="price">20 €<small style="font-size:16px;color:var(--mut)">/mes</small></div><ul><li>300.000 tokens al día</li><li>Nexo Plus (ve imágenes)</li><li>Nexo Code 30B y esfuerzo Alto</li></ul></div>
+      <div class="plan top"><h3>Ultra</h3><div class="price">100 €<small style="font-size:16px;color:var(--mut)">/mes</small></div><ul><li>1.500.000 tokens al día</li><li>Nexo Ultra Code y Nexo Pro</li><li>Esfuerzo Máximo y memoria x2</li></ul></div>
+    </div>
+  </div></section>
+
+  <section id="preguntas"><div class="w">
+    <h2>Preguntas</h2>
+    <div class="req" style="margin:30px 0 30px">
+      <div class="card"><h3>Mínimo (pack Básico)</h3><p>Windows 10/11 · 16 GB de RAM · 15 GB libres · gráfica de 6 GB recomendada</p></div>
+      <div class="card"><h3>Recomendado (Completo)</h3><p>Windows 10/11 · 32 GB de RAM · 60 GB libres · gráfica NVIDIA de 8 GB o más</p></div>
+    </div>
+    <details><summary>¿Windows me avisa de que la app no es conocida?</summary><p>Es normal en apps nuevas sin firma de pago. Pulsa “Más información” y después “Ejecutar de todas formas”.</p></details>
+    <details><summary>¿Necesito internet?</summary><p>Solo para instalarla. Después funciona sin conexión (salvo si le pides que busque algo en la web).</p></details>
+    <details><summary>¿Cómo la desinstalo?</summary><p>Desde Configuración → Aplicaciones → Nexo, o con “Desinstalar Nexo” en el menú Inicio.</p></details>
+    <details><summary>¿Por qué tarda en responder la primera vez?</summary><p>Tiene que cargar el modelo de IA en tu gráfica. Después va mucho más rápido.</p></details>
+  </div></section>
+
+  <div class="w final">
+    <h2>Pruébala ahora</h2>
+    <p class="sub" style="margin-inline:auto">Gratis, en tu PC y sin cuentas.</p>
+    <a class="btn dl" href="NexoSetup.exe" download>Descargar para Windows</a>
+  </div>
+</main>
+
+<footer><div class="w"><span>Nexo · creado por neconex22</span><span>© <span id="y"></span></span></div></footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
